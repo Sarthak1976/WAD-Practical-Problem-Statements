@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="load()">
+    <h1>Product Listings</h1>
+
+    <h3 id="loading-text"></h3>
+
+
+    <div id="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Price(INR)</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                
+
+            </tbody>
+        </table>
+    </div>
+    <div id="buttons">
+        <button id="prev"  onclick="prev()">Previous</button>
+        <button id="next" onclick="next()">Next</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

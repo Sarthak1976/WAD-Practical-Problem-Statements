@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #d2cbcb ;
+}
+
+header,footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px;
+    background-color: #333;
+    color: white;
+}
+
+h2{
+    text-align: center;
+    font-weight: bolder;
+}
+.hero{
+    margin-bottom: 130px;
+    padding-top: 20px;
+    background-color: #a49f9f;
+}
+
+.hero div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+.learning-paths,.courses{
+    margin-bottom: 60px;
+    border: 2px solid black;
+    margin-left:20px;
+    margin-right: 20px;
+    border-radius: 8px;
+    background-color: white;
+    
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid black;
+    max-width: 300px;
+    border-collapse: collapse;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.table{
+    margin-bottom: 130px;
+}
+
+
+.table div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+table{
+    border: 1px solid #333;
+    border-collapse: collapse;
+}
+
+th,td{
+    padding: 20px;
+    border: 1px solid #333;
+    font-weight: bold;
+    font-size: larger;
+}
+
+p{
+    max-width: 1000px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Puts space between the cards */
+    flex-wrap: wrap; /* Wraps them to the next line on small screens */
+    padding: 20px; /* Gives the inside of your section border some breathing room */
+}
+
+
+

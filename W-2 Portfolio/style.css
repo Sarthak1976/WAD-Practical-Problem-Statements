@@ -1,0 +1,114 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 10px 30px; 
+    height: 40px;
+     
+}
+
+.navitems a{
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.hero{
+    text-align: center;
+    height: 60vh;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.hero p{
+    max-width: 800px; 
+    margin: 0 auto; 
+    line-height: 1.6
+}
+
+.skills h2,.projects h2,.education h2,.contact h2{
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    gap: 20px;
+}
+
+.container .skillcard{
+    width: 220px; 
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+}
+
+.projects button{
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.projects button:hover{
+    background-color: #0066cc;
+}
+
+.education div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+}
+
+
+.contact{
+    background-color: #333;
+    color: white;
+    padding-top: 5px;
+}
+.contact div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5;
+    
+}
+
+
+section {
+    padding: 60px 20px; /* 60px of empty space above and below every section */
+}
+
+#skills, #education {
+    background-color: #f7f7f7; /* A very light, soft grey */
+    border-top: 1px solid #eaeaea; /* Optional: A nearly invisible line */
+    border-bottom: 1px solid #eaeaea;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap College</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase tracking-wide" href="#">PICT Pune</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li><a class="nav-link" href="#">Home</a></li>
+                    <li><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li><a class="nav-link" href="#toppers">Toppers</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <header class="container mt-5 text-center">
+        <h1 class="display-5 fw-bold text-primary">Pune Institute of Computer Technology</h1>
+        <h3 class="text-muted mt-2 fw-light">Welcome to PICT</h3>
+    </header>
+
+    <div class="container mt-5" id="achievements">
+        <h2 class="text-center mb-4 fw-bold text-dark">Our Acievements</h2>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-12">
+                <div class="card shadow-sm h-100 border-primary border-top border-3">
+                    <div class="card-body text-center p-4">
+                        <h4 class="text-primary fw-bold">NAAC A+ Grade</h4>
+                        <p class="text-muted mb-0">Accredited with the highest honors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <div class="card shadow-sm h-100 border-success border-top border-3">
+                    <div class="card-body text-center p-4">
+                        <h4 class="text-success fw-bold">Top IT Placement</h4>
+                        <p class="text-muted mb-0">98% placement record for the 2025 batch.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5" id="toppers">
+        <h2 class="text-center mb-4 fw-bold text-dark">Year-Wise Toppers</h2>
+
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card shadow h-100 text-center border-0">
+                    <img class="card-img-top" src="data:image/png;base64,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" alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-dark">Jhon Doe</h5>
+                        <h6 class="text-primary mb-3">Year: 2023</h6>
+                        <p class="card-text mb-1"><strong>Department:</strong> IT</p>
+                        <p class="card-text text-success fw-bold fs-4 mb-0">CGPA: 10</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col -12 col-sm-6 col-md-4">
+                <div class="card shadow h-100 text-center border-0">
+                    <img class="card-img-top" src="data:image/png;base64,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" alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-dark">Sameer Shaikh</h5>
+                        <h6 class="text-primary mb-3">Year: 2024</h6>
+                        <p class="card-text mb-1"><strong>Department:</strong> Computer</p>
+                        <p class="card-text text-success fw-bold fs-4 mb-0">CGPA: 10</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card shadow h-100 text-center border-0">
+                    <img class="card-img-top" src="data:image/png;base64,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" alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-dark">Rakesh Sharma</h5>
+                        <h6 class="text-primary mb-3">Year: 2025</h6>
+                        <p class="card-text mb-1"><strong>Department:</strong> E&TC</p>
+                        <p class="card-text fs-4 fw-bold text-success mb-0">CGPA: 10</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+
+    </div>
+
+
+    <footer class="bg-dark text-white mt-5 p-4 shadow-lg">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-4 col-12 mb-4">
+                    <h5 class="text-uppercase fw-bold text-primary mb-3">Address</h5>
+                    <p class="text-light">Survey No. 27, Near Trimurti Chowk,<br>Dhankawadi, Pune - 411043</p>
+                </div>
+                <div class="col-md-4 col-12 mb-4">
+                    <h5 class="text-uppercase fw-bold text-primary mb-3">Contact</h5>
+                    <p class="text-light">Phone: +91 20 2437 1101 <br>
+                       Email: principal@pict.edu</p>
+                </div>
+                <div class="col-md-4 col-12 mb-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white d-block text-decoration-none">LinkedIn</a>
+                    <a href="#" class="text-white d-block text-decoration-none">Twitter</a>
+                    <a href="#" class="text-white d-block text-decoration-none">Instagram</a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
