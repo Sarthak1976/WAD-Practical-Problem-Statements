@@ -1,0 +1,6 @@
+[
+    {"id":1,"name":"Wireless-mouse","price":999,"image":"./assets/mouse.jpg"},
+    {"id":2,"name":"Wireless-keyboard","price":400,"image":"./assets/keyboard.jpg"},
+    {"id":3,"name":"Wireless-headphones","price":500,"image":"./assets/headphones.jpg"},
+    {"id":4,"name":"Wireless-charger","price":1299,"image":"./assets/charger.jpg"}
+]
