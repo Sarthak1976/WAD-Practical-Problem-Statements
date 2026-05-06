@@ -89,8 +89,37 @@ function deleteTask(buttonElement, taskId) {
 }
 
 // 5. THE UPDATE HACK
-function editTask(buttonElement, taskId, oldTitle) {
-    document.getElementById('todo').value = oldTitle; // Move text to input
-    deleteTask(buttonElement, taskId);                // Destroy old version
-    document.getElementById('todo').focus();          // Focus input
+// function editTask(buttonElement, taskId, oldTitle) {
+//     document.getElementById('todo').value = oldTitle; // Move text to input
+//     deleteTask(buttonElement, taskId);                // Destroy old version
+//     document.getElementById('todo').focus();          // Focus input
+// }
+
+
+// 5. THE REAL AJAX UPDATE (PATCH)
+function updateTask(buttonElement, taskId, oldTitle) {
+    // 1. Pop open a simple browser window to ask for the new text
+    const newTitle = prompt("Update your task:", oldTitle);
+
+    // If they hit Cancel or leave it blank, stop immediately
+    if (!newTitle || newTitle.trim() === "") return;
+
+    // 2. Send the PATCH request to the server (only sending what changed!)
+    fetch(`${API_URL}/${taskId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ title: newTitle }),
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    .then(response => response.json())
+    .then(updatedTask => {
+        // 3. UI Update Hack: Find the text div right next to these buttons and change its text!
+        // (parentElement is the div holding the buttons, previousElementSibling is the text div)
+        const textDiv = buttonElement.parentElement.previousElementSibling;
+        textDiv.innerText = updatedTask.title;
+        
+        // Also update our local array memory so it doesn't revert if we do something else
+        const taskIndex = todolist.findIndex(t => t.id === taskId);
+        if (taskIndex !== -1) todolist[taskIndex].title = updatedTask.title;
+    })
+    .catch(error => console.log("Error updating task: ", error));
 }
