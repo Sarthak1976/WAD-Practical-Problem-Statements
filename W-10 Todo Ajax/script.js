@@ -2,18 +2,16 @@ const addbtn = document.getElementById('addbtn');
 const todoInput = document.getElementById('todo');
 const API_URL = 'https://jsonplaceholder.typicode.com/todos';
 
-// Your local array - this is the source of truth for the UI!
 let todolist = [];
 let userID = 1;
 
-// 1. INITIAL LOAD (GET)
-// Fetch 3 tasks just to populate the list when the page opens
+// 1. INITIAL LOAD (AJAX GET)
 document.addEventListener('DOMContentLoaded', () => {
     fetch(`${API_URL}?_limit=3`)
         .then(response => response.json())
         .then(tasks => {
-            todolist = tasks; // Put the fake tasks into our array
-            render();         // Draw them!
+            todolist = tasks; 
+            render();         
         })
         .catch(error => console.log("Error fetching initial tasks:", error));
 });
@@ -25,8 +23,7 @@ const render = () => {
     taskListDiv.innerHTML = ""; // Clear the old list
     
     todolist.forEach((task) => {
-        // Notice how we use ${task.id} to make the IDs and 'for' attributes unique!
-        // We also add data-id="${task.id}" to the button so we know what to delete
+        // Notice the onclick events injected directly into the buttons!
         taskListDiv.innerHTML += `
             <div class="card px-2 mb-2">
                 <div class="d-flex justify-content-between align-items-center py-2">
@@ -35,7 +32,10 @@ const render = () => {
                         <label class="form-check-label ms-2 ${task.completed ? 'text-decoration-line-through text-muted' : ''}" for="check-${task.id}">${task.title}</label>
                     </div>
                     <div>
-                        <button type="button" data-id="${task.id}" class="remove-btn text-white btn btn-danger btn-sm">
+                        <button type="button" onclick="editTask(this, ${task.id}, '${task.title}')" class="btn btn-warning btn-sm text-white me-1">
+                            Edit
+                        </button>
+                        <button type="button" onclick="deleteTask(this, ${task.id})" class="btn btn-danger btn-sm text-white">
                             Remove
                         </button>
                     </div>
@@ -43,7 +43,7 @@ const render = () => {
             </div>`;
     });
     
-    // Only show the card if there are tasks
+    // Show or hide the main list card
     if (todolist.length > 0) {
         document.getElementById('listCard').classList.remove('d-none');
     } else {
@@ -52,7 +52,7 @@ const render = () => {
 }
 
 
-// 3. ADD A TASK (POST)
+// 3. ADD A TASK (AJAX POST)
 addbtn.addEventListener('click', function () {
     const taskText = todoInput.value.trim();
     if (taskText === "") return alert("Please enter a task!");
@@ -64,15 +64,11 @@ addbtn.addEventListener('click', function () {
             completed: false,
             userId: userID
         }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     .then(response => response.json())
     .then(newTask => {
-        console.log("Server Saved : ", newTask);
-        
-        // Push to local array and re-render
+        // Add to array and redraw everything
         todolist.push(newTask);
         todoInput.value = "";
         render();
@@ -83,34 +79,44 @@ addbtn.addEventListener('click', function () {
         setTimeout(() => successMsg.classList.add('d-none'), 2000);
     })
     .catch(error => {
-        console.log("Error: ", error);
         const errorMsg = document.getElementById('errormsg');
         errorMsg.classList.remove('d-none');
         setTimeout(() => errorMsg.classList.add('d-none'), 2000);
     });
 });
 
-document.getElementById('task-list').addEventListener('click',function(event){
-    if (event.target.classList.contains('remove-btn')){
-        const taskId = event.target.getAttribute('data-id');
 
-        fetch(`${API_URL}/${taskId}`,{
-            method: 'DELETE',
-        })
-        .then(response => {
-            if(response.ok){
-                console.log(`Deleted from Server task #${taskId}`);
-
-                todolist = todolist.filter(task => task.id != taskId);
-
-                render();
-                
-            }
-        })
-        .catch(error => {
-            console.log("Error deletind the task : ",error);
+// 4. THE DELETE HACK (AJAX DELETE + DOM Removal)
+function deleteTask(buttonElement, taskId) {
+    fetch(`${API_URL}/${taskId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if(response.ok){
+            // 1. Remove it from our local array so it doesn't respawn later
+            todolist = todolist.filter(task => task.id != taskId);
             
-        });
-    }
-});
+            // 2. Instantly destroy the specific card from the screen 
+            buttonElement.closest('.card').remove(); 
+            
+            // 3. If that was the last task, hide the main list container
+            if (todolist.length === 0) {
+                document.getElementById('listCard').classList.add('d-none');
+            }
+        }
+    })
+    .catch(error => console.log("Error deleting the task: ", error));
+}
 
+
+// 5. THE UPDATE HACK
+function editTask(buttonElement, taskId, oldTitle) {
+    // 1. Put the text back into the input box
+    document.getElementById('todo').value = oldTitle;
+    
+    // 2. Run the delete function to remove the old version
+    deleteTask(buttonElement, taskId);
+    
+    // 3. Focus the input box so the user can type immediately
+    document.getElementById('todo').focus();
+}
